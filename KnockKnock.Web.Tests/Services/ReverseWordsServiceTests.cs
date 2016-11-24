@@ -8,7 +8,7 @@ namespace KnockKnock.Web.Tests.Services
     public class ReverseWordsServiceTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ReverseWords_ValidString_ValidReverseWordsOnly()
         {
             var inputStr = "'Oh, you can't help that,' said the Cat: 'we're all mad here. I'm mad. You're mad.'";
 
@@ -18,7 +18,7 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod1_2()
+        public void ReverseWords_ValidStringWithOtherLanguagesChars_ValidReverseWordsOnly()
         {
             var inputStr = "'Föobar Приве, однако мы стобой сказали: 'Хай хой'__ __ __'";
 
@@ -28,7 +28,7 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void ReverseWords_InvalidStringLength_MaxLengthException()
         {
             var reverseService = new ReverseWordsService();
 
@@ -48,7 +48,7 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod1_4()
+        public void ReverseWords_ValidSimpleString_ValidReverseWordsOnly()
         {
             var inputStr = "You're new here, aren't you";
 

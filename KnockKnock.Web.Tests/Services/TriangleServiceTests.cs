@@ -10,7 +10,7 @@ namespace KnockKnock.Web.Tests.Services
     public class TriangleServiceTests
     {
         [TestMethod]
-        public void TestMethod_01()
+        public void GetTriangleType_InvalidTriangeCoordinats_Error()
         {
             var triangleService = new TriangleService();
             var resultsList = new List<TriangleType>
@@ -31,7 +31,7 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod_02()
+        public void GetTriangleType_ValidTriangles_Equilateral()
         {
             var triangleService = new TriangleService();
             var resultsList = new List<TriangleType>
@@ -44,7 +44,7 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod_03()
+        public void GetTriangleType_ValidTriangles_Scalene()
         {
             var triangleService = new TriangleService();
             var resultsList = new List<TriangleType>
@@ -58,7 +58,7 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod_04()
+        public void GetTriangleType_ValidTriangles_Isosceles()
         {
             var triangleService = new TriangleService();
             var resultsList = new List<TriangleType>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using KnockKnock.Web.Services.Fibanacci;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +11,7 @@ namespace KnockKnock.Web.Tests.Services
     public class FibonachiServiceTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GetNumber_ValidInput_ValidRresultForAll()
         {
             var service = new FibonachiService();
             var resultList = new Dictionary<long, long>
@@ -35,7 +36,54 @@ namespace KnockKnock.Web.Tests.Services
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void GetNumber_ValidInputUsedCache_ValidRresultForAll()
+        {
+            var service = new FibonachiService();
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            service.GetNumber(-92);
+            service.GetNumber(-75);
+            service.GetNumber(-55);
+            service.GetNumber(-20);
+            service.GetNumber(-11);
+            service.GetNumber(-4);
+            service.GetNumber(0);
+            service.GetNumber(1);
+            service.GetNumber(9);
+            service.GetNumber(21);
+            service.GetNumber(38);
+            service.GetNumber(51);
+            service.GetNumber(69);
+            service.GetNumber(92);
+            sw.Stop();
+            var elapsed = sw.Elapsed;
+
+            sw.Reset();
+
+            sw.Start();
+            service.GetNumber(-92);
+            service.GetNumber(-75);
+            service.GetNumber(-55);
+            service.GetNumber(-20);
+            service.GetNumber(-11);
+            service.GetNumber(-4);
+            service.GetNumber(0);
+            service.GetNumber(1);
+            service.GetNumber(9);
+            service.GetNumber(21);
+            service.GetNumber(38);
+            service.GetNumber(51);
+            service.GetNumber(69);
+            service.GetNumber(92);
+            sw.Stop();
+            var cachedElapsed = sw.Elapsed;
+
+            Assert.IsTrue(cachedElapsed < elapsed);
+        }
+
+        [TestMethod]
+        public void GetNumber_InvalidInput_ArgumentOutOfRangeException()
         {
             var service = new FibonachiService();
             try
