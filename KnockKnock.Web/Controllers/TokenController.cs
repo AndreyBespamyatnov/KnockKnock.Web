@@ -16,7 +16,7 @@ namespace KnockKnock.Web.Controllers
         {
             try
             {
-                var result = Guid.Empty;
+                var result = new Guid("998d1f95-93f2-4ea7-9a3f-e3ce80638b51");
                 return Ok(result);
             }
             catch (Exception ex)
