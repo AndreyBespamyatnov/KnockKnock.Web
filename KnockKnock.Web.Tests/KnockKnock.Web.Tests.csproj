@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controllers\FibonacciControllerTests.cs" />
     <Compile Include="Controllers\ReverseWordsControllerTests.cs" />
+    <Compile Include="Controllers\TokenControllerTests.cs" />
     <Compile Include="Controllers\TriangleTypeControllerTests.cs" />
     <Compile Include="Services\FibonachiServiceTests.cs" />
     <Compile Include="Services\ReverseWordsServiceTests.cs" />
