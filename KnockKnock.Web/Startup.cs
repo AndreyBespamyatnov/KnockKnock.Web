@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using Owin;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using KnockKnock.Web.Interfaces;
 using KnockKnock.Web.Services.Fibanacci;
@@ -8,11 +9,14 @@ using Microsoft.Practices.Unity;
 
 namespace KnockKnock.Web
 {
-    public static class WebApiConfig
+    public class Startup
     {
-        public static void Register(HttpConfiguration config)
+        // This code configures Web API. The Startup class is specified as a type
+        // parameter in the WebApp.Start method.
+        public void Configuration(IAppBuilder appBuilder)
         {
-            // Web API configuration and services
+            HttpConfiguration config = new HttpConfiguration();
+
             var container = new UnityContainer();
             container.RegisterType<IReverseWordsService, ReverseWordsService>(new HierarchicalLifetimeManager());
             container.RegisterType<ITriangleService, TriangleService>(new HierarchicalLifetimeManager());
@@ -25,8 +29,10 @@ namespace KnockKnock.Web
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
-            // Web API routes
             config.MapHttpAttributeRoutes();
+
+            // Configure Web API for self-host. 
+            appBuilder.UseWebApi(config);
         }
     }
 }

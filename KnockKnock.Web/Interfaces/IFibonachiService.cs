@@ -5,7 +5,7 @@ namespace KnockKnock.Web.Interfaces
     /// <summary>
     /// The interface for calculate a Fibonacci secience and get number by index
     /// </summary>
-    public interface IFibonachiService
+    public interface IFibonacciService
     {
         /// <summary>
         /// Returns the nth number in the fibonacci sequence.

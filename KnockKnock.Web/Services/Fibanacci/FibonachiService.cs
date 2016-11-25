@@ -3,7 +3,7 @@ using KnockKnock.Web.Interfaces;
 
 namespace KnockKnock.Web.Services.Fibanacci
 {
-    public class FibonachiService : ServiceBase, IFibonachiService
+    public class FibonachiService : ServiceBase, IFibonacciService
     {
         private const long Threshold = 92; // 92 is the maximum for long
 
