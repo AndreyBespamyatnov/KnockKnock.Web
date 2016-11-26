@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Owin.Hosting;
 using System.Net.Http;
 using System.Linq;
+using System.Net;
 using KnockKnock.Web.Services.Triangle.Models;
 
 namespace KnockKnock.Web.Tests
@@ -14,6 +15,18 @@ namespace KnockKnock.Web.Tests
         private class HttpRespose
         {
             public string Message { get; set; }
+        }
+
+
+        [TestMethod]
+        public void CallAzureService_ValidInput_OK()
+        {
+            HttpClient client = new HttpClient();
+            const string productionUrl = "http://knockknockweb20161123094859.azurewebsites.net/";
+            const string apiMethodToGet = "api/Token";
+            var response = client.GetAsync(productionUrl + apiMethodToGet).Result;
+            Assert.IsNotNull(response);
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
         }
 
         [TestMethod]
@@ -31,7 +44,7 @@ namespace KnockKnock.Web.Tests
             MakeControllerAction($"api/Fibonacci/?n={-100}", "Bad Request", result =>
             {
                 var resultObject = Newtonsoft.Json.JsonConvert.DeserializeObject<HttpRespose>(result);
-                Assert.AreEqual("Value cannot be less than -92.\r\nParameter name: n", resultObject.Message);
+                Assert.IsTrue(resultObject.Message.StartsWith("Value cannot be less than -92."));
             });
         }
 
